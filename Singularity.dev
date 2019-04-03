@@ -1,0 +1,25 @@
+Bootstrap: shub
+From: pndni/centos7-base:1.2.0
+
+%post
+    yum install -y epel-release
+    yum install -y python36 python36-pip python36-devel libstdc++-static pigz
+    pip3.6 install heudiconv
+    git clone --branch v1.0.20181125 https://github.com/rordenlab/dcm2niix.git
+    cd dcm2niix
+    mkdir build && cd build
+    /opt/cmake/bin/cmake -DCMAKE_INSTALL_PREFIX=/opt/dcm2niix ..
+    make
+    make install
+
+%environment
+    export PATH=/opt/dcm2niix/bin:$PATH
+
+%apprun heudiconv
+    heudiconv "$@"
+
+%apprun dcm2niix
+    dcm2niix "$@"
+
+%labels
+    Maintainer Steven Tilley
