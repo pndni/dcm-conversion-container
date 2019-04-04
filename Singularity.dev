@@ -3,11 +3,10 @@ From: pndni/centos7-base:1.2.0
 
 %post
     yum install -y epel-release
-    yum install -y python36 python36-pip python36-devel libstdc++-static pigz
+    yum install -y python36 python36-pip python36-devel libstdc++-static pigz python36-virtualenv
 
 %appinstall heudiconv
-    pip3.6 install virtualenv
-    virtualenv /opt/heudiconv
+    virtualenv-3.6 /opt/heudiconv
     source /opt/heudiconv/bin/activate
     pip install heudiconv
     deactivate
