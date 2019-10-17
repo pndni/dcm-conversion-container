@@ -30,9 +30,9 @@ RUN yum install -y epel-release && \
     /bin/bash cmake-3.14.0-Linux-x86_64.sh --prefix=/opt/cmake --skip-license && \
     rm cmake-3.14.0-Linux-x86_64.sh
 
-RUN git clone --branch v1.0.20190902 https://github.com/rordenlab/dcm2niix.git && \
+RUN git clone https://github.com/stilley2/dcm2niix.git && \
     pushd dcm2niix && \
-    git checkout 0848baa590825c43e8fb03ccc7e68dcf0ade3d73 && \
+    git checkout f54be46667fce7994d2062e2623d12253c1bd968 && \
     mkdir build && \
     pushd build && \
     /opt/cmake/bin/cmake -DCMAKE_INSTALL_PREFIX=/opt/dcm2niix .. && \
