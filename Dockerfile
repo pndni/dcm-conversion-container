@@ -37,6 +37,12 @@ RUN git clone --branch v1.0.20190902 https://github.com/rordenlab/dcm2niix.git &
     make && \
     make install && \
     popd && \
+    mkdir dcm2niix/build_mod && \
+    pushd dcm2niix/build_mod && \
+    /opt/cmake/bin/cmake -DCMAKE_INSTALL_PREFIX=/opt/dcm2niix_myInstanceNumberOrderIsNotSpatial -DCMAKE_CXX_FLAGS=-DmyInstanceNumberOrderIsNotSpatial .. && \
+    make && \
+    make install && \
+    popd && \
     rm -rf dcm2niix
 
 RUN pip3.6 install heudiconv==0.5.4
